@@ -53,13 +53,13 @@ placeholders = {
 model = GCN(placeholders, logging=True)
 
 def load_image(img_path):
-	img = io.imread(img_path)
-	if img.shape[2] == 4:
-		img[np.where(img[:,:,3]==0)] = 255
-	img = transform.resize(img, (224,224))
-	img = img[:,:,:3].astype('float32')
+    img = io.imread(img_path)
+    if img.shape[2] == 4:
+        img[np.where(img[:,:,3]==0)] = 255
+    img = transform.resize(img, (224,224))
+    img = img[:,:,:3].astype('float32')
 
-	return img
+    return img
 
 # Load data, initialize session
 config=tf.ConfigProto()

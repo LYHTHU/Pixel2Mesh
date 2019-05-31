@@ -73,24 +73,24 @@ feed_dict = construct_feed_dict(pkl, placeholders)
 
 train_number = data.number
 for epoch in range(FLAGS.epochs):
-	all_loss = np.zeros(train_number,dtype='float32') 
-	for iters in range(train_number):
-		# Fetch training data
-		img_inp, y_train, data_id = data.fetch()
-		feed_dict.update({placeholders['img_inp']: img_inp})
-		feed_dict.update({placeholders['labels']: y_train})
+    all_loss = np.zeros(train_number,dtype='float32')
+    for iters in range(train_number):
+        # Fetch training data
+        img_inp, y_train, data_id = data.fetch()
+        feed_dict.update({placeholders['img_inp']: img_inp})
+        feed_dict.update({placeholders['labels']: y_train})
 
-		# Training step
-		_, dists,out1,out2,out3 = sess.run([model.opt_op,model.loss,model.output1,model.output2,model.output3], feed_dict=feed_dict)
-		all_loss[iters] = dists
-		mean_loss = np.mean(all_loss[np.where(all_loss)])
-		if (iters+1) % 128 == 0:
-			print('Epoch %d, Iteration %d'%(epoch + 1,iters + 1))
-			print('Mean loss = %f, iter loss = %f, %d'%(mean_loss,dists,data.queue.qsize()))
-	# Save model
-	model.save(sess)
-	train_loss.write('Epoch %d, loss %f\n'%(epoch+1, mean_loss))
-	train_loss.flush()
+        # Training step
+        _, dists,out1,out2,out3 = sess.run([model.opt_op,model.loss,model.output1,model.output2,model.output3], feed_dict=feed_dict)
+        all_loss[iters] = dists
+        mean_loss = np.mean(all_loss[np.where(all_loss)])
+        if (iters+1) % 128 == 0:
+            print('Epoch %d, Iteration %d'%(epoch + 1,iters + 1))
+            print('Mean loss = %f, iter loss = %f, %d'%(mean_loss,dists,data.queue.qsize()))
+    # Save model
+    model.save(sess)
+    train_loss.write('Epoch %d, loss %f\n'%(epoch+1, mean_loss))
+    train_loss.flush()
 
 data.shutdown()
 print('Training Finished!')
