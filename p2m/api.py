@@ -16,7 +16,7 @@
 #
 from __future__ import division
 import tflearn
-from layers import *
+from p2m.layers import *
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
