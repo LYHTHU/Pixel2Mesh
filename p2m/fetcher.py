@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 import numpy as np
-import cPickle as pickle
+import _pickle as pickle
 import threading
-import Queue
+import queue
 import sys
 from skimage import io,transform
 
@@ -25,11 +25,11 @@ class DataFetcher(threading.Thread):
 	def __init__(self, file_list):
 		super(DataFetcher, self).__init__()
 		self.stopped = False
-		self.queue = Queue.Queue(64)
+		self.queue = queue.queue(64)
 
 		self.pkl_list = []
 		with open(file_list, 'r') as f:
-			while(True):
+			while True:
 				line = f.readline().strip()
 				if not line:
 					break
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 	data.start()
 
 	image,point,normal,_,_ = data.fetch()
-	print image.shape
-	print point.shape
-	print normal.shape
+	print(image.shape)
+	print(point.shape)
+	print(normal.shape)
 	data.stopped = True

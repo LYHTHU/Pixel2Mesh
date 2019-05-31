@@ -5,7 +5,7 @@ Created on Fri Oct 26 12:55:31 2018
 @author: nanyang wang
 """
 
-import os,sys
+import os, sys
 import numpy as np
 import cv2
 import trimesh
