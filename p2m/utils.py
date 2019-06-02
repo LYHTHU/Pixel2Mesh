@@ -16,6 +16,7 @@
 #
 import numpy as np
 
+
 def construct_feed_dict(pkl, placeholders):
     """Construct feed dictionary."""
     coord = pkl[0]

@@ -22,6 +22,7 @@ from p2m.losses import *
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
+
 class Model(object):
     def __init__(self, **kwargs):
         allowed_kwargs = {'name', 'logging'}
@@ -113,6 +114,7 @@ class Model(object):
         #save_path = "checks/tmp/%s.ckpt" % self.name
         saver.restore(sess, save_path)
         print("Model restored from file: %s" % save_path)
+
 
 class GCN(Model):
     def __init__(self, placeholders, **kwargs):

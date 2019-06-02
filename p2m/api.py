@@ -21,6 +21,7 @@ from p2m.layers import *
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
+
 class Model(object):
     def __init__(self, **kwargs):
         allowed_kwargs = {'name', 'logging'}

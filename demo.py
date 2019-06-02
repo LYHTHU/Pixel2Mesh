@@ -52,6 +52,7 @@ placeholders = {
 }
 model = GCN(placeholders, logging=True)
 
+
 def load_image(img_path):
     img = io.imread(img_path)
     if img.shape[2] == 4:

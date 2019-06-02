@@ -18,6 +18,7 @@ import tensorflow as tf
 from tensorflow.python.framework import ops
 nn_distance_module=tf.load_op_library('./external/tf_nndistance_so.so')
 
+
 def nn_distance(xyz1,xyz2):
     '''
 Computes the distance of nearest neighbors for a pair of point clouds
@@ -37,6 +38,7 @@ output: idx2:  (batch_size,#point_2)   nearest neighbor from second to first
     #shape2=op.inputs[1].get_shape().with_rank(3)
     #return [tf.TensorShape([shape1.dims[0],shape1.dims[1]]),tf.TensorShape([shape1.dims[0],shape1.dims[1]]),
         #tf.TensorShape([shape2.dims[0],shape2.dims[1]]),tf.TensorShape([shape2.dims[0],shape2.dims[1]])]
+
 @ops.RegisterGradient('NnDistance')
 def _nn_distance_grad(op,grad_dist1,grad_idx1,grad_dist2,grad_idx2):
     xyz1=op.inputs[0]
